@@ -1,4 +1,4 @@
-SpringStrutsHibernateStarter
+Template de projet : Struts 2 / Spring
 ============================
 
-This is my foundation project for starting a new Spring-Struts2-Hibernate web application.
+Début de projet avec Struts et spring
