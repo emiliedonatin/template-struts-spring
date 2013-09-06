@@ -1,7 +1,6 @@
 package fr.treeptik.action;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -60,6 +59,7 @@ public class EmployeeAction extends ActionSupport implements
 
 	@Action(value = "listAction", results = {
 			@Result(name = "success", location = "/employee/list.jsp")})
+	//	cette annotation permet de ne pas faire la validation puisqu'on appelle une liste
 	@SkipValidation
 	public String listEmployees() throws Exception {
 		employees = employeeService.getAll();

@@ -8,9 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.treeptik.dao.EmployeeDao;
 import fr.treeptik.entity.Employee;
+import fr.treeptik.exception.ServiceException;
 import fr.treeptik.service.EmployeeService;
 
-@Service(value = "employeeManager")
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
     
     
@@ -19,26 +20,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void add(Employee employee) {
+    public Employee add(Employee employee) throws ServiceException {
         employeeDao.save(employee);
+        
+        return employee;
     }
 
     @Override
-    @Transactional
-    public List<Employee> getAll() {
+    public List<Employee> getAll() throws ServiceException {
         return employeeDao.findAll();
     }
 
     @Override
-    @Transactional
-    public Employee get(Integer id) {
+    public Employee get(Integer id) throws ServiceException {
         return employeeDao.findOne(id);
     }
 
     @Override
     @Transactional
-    public void delete(Integer employeeId) {
-        employeeDao.delete(employeeId);
+    public void delete(Integer employeeId) throws ServiceException {
+       
+    	employeeDao.delete(employeeId);
     }
     
 }

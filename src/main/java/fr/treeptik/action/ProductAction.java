@@ -7,13 +7,16 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.interceptor.validation.SkipValidation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import fr.treeptik.entity.Commande;
 import fr.treeptik.entity.Product;
+import fr.treeptik.service.ProductService;
 
 @Component(value = "productAction")
 @Scope("prototype")
@@ -25,6 +28,10 @@ public class ProductAction extends ActionSupport implements
 
 	private Product product = new Product();
 	private List<Product> products;
+	private Commande commande = new Commande();
+	
+	@Autowired
+	private ProductService productService;
 
 	@Override
 	public Product getModel() {
@@ -35,10 +42,9 @@ public class ProductAction extends ActionSupport implements
 			@Result(name = "success", type = "redirectAction", location = "listAction.action"),
 			@Result(name = "input", location = "/product/add.jsp") })
 	public String addProduct() throws Exception {
-		System.out.println("ADD PRODUCT");
-
-		System.out.println(product);
-
+		
+		productService.add(product);
+		
 		return "success";
 	}
 
@@ -46,8 +52,11 @@ public class ProductAction extends ActionSupport implements
 			@Result(name = "success", location = "/product/list.jsp")})
 	@SkipValidation
 	public String listProducts() throws Exception {
+		
+		products = productService.getAll();
 
-		products = Arrays.asList(new Product(1, "REF1", "DESC1"), new Product(2, "REF2", "DESC2"));
+		
+		System.out.println("Size = " + products.size());
 
 		return "success";
 	}

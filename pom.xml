@@ -24,26 +24,28 @@
 
     <dependencies>
         
-        <!-- Struts2 -->
+        <!-- Struts2 (c'est la seule dépendance obligatoire pour struts 2)-->
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-core</artifactId>
             <version>${struts.version}</version>
         </dependency>
         
+		<!-- Cette dépendance permet d'utiliser Struts avec des annotations (elle n'est pas obligatoire) -->
         <dependency>
 			<groupId>org.apache.struts</groupId>
 			<artifactId>struts2-convention-plugin</artifactId>
 			<version>${struts.version}</version>
 		</dependency>
         
-        <!-- Struts2 Spring integration -->
+        <!-- Dépendance pour l'intégration de struts2 avec spring -->
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-spring-plugin</artifactId>
             <version>${struts.version}</version>
         </dependency>
-<!-- Spring -->
+
+		<!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -60,6 +62,7 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
             <exclusions>
+               
                 <!-- Exclude Commons Logging in favor of SLF4j -->
                 <exclusion>
                     <groupId>commons-logging</groupId>

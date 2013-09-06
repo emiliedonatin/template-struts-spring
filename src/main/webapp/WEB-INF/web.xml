@@ -6,11 +6,21 @@
 	
   <display-name>Struts 2 Web Application</display-name>
   
+  <welcome-file-list>
+      <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Configuration de Spring -->
   <context-param>
 	<param-name>contextConfigLocation</param-name>
 	<param-value>/WEB-INF/classes/spring.xml</param-value>
   </context-param>
   
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- Configuration de Struts -->
   <filter>
 	<filter-name>struts2</filter-name>
 	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -21,12 +31,6 @@
 	<url-pattern>/*</url-pattern>
   </filter-mapping>
  
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
   
-  <welcome-file-list>
-      <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
   
 </web-app>

@@ -15,6 +15,7 @@
 			<th>Email</th>
 			<th>Telephone</th>
 		</tr>
+		<!-- c'est l'équivalent du foreach -->
 		<s:iterator value="employees">
 			<tr>
 				<td><s:property value="id" /></td>

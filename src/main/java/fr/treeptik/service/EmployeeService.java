@@ -3,10 +3,12 @@ package fr.treeptik.service;
 import java.util.List;
 
 import fr.treeptik.entity.Employee;
+import fr.treeptik.exception.ServiceException;
 
 public interface EmployeeService {
-    public void add(Employee employee);
-    public List<Employee> getAll();
-    public Employee get(Integer id);
-    public void delete(Integer employeeId);
+    
+	Employee add(Employee employee) throws ServiceException;
+    List<Employee> getAll() throws ServiceException;
+    Employee get(Integer id) throws ServiceException;
+    void delete(Integer employeeId) throws ServiceException;
 }

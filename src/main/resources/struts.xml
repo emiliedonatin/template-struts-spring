@@ -4,8 +4,14 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
  
 <struts>
+	
+	<!-- pour dire qu'on est en mode dev il faut faire attention à passer en false pour le mode prod -->
  	<constant name="struts.devMode" value="true" />
+
+	<!-- pour préciser où se trouve les fichiers de messages d'erreur -->
  	<constant name="struts.custom.i18n.resources" value="i18n/messages" />
+ 	
+<!--  	c'est un exemple de configuration mais c'est plus simple de le faire avec des annotations -->
         
 <!--         <package name="default" namespace="/pages" extends="struts-default"> -->
             
