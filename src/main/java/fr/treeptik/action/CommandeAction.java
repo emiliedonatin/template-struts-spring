@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.treeptik.entity.Commande;
+import fr.treeptik.entity.Employee;
 import fr.treeptik.entity.Product;
 import fr.treeptik.service.EmployeeService;
 import fr.treeptik.service.ProductService;
@@ -31,8 +32,8 @@ public class CommandeAction extends ActionSupport {
 	private Product product = new Product();
 	private List<Commande> commandes;
 	private Map<Integer, String> products;
-	
-	
+	private Map<Integer, String> employees;
+	private Employee employee = new Employee();
 	
 	
 	@Autowired
@@ -47,12 +48,15 @@ public class CommandeAction extends ActionSupport {
 			@Result(name = "input", location = "/commande/add.jsp") })
 	public String addCommande() throws Exception{
 		
-		System.out.println("Add Commande");
+		
 		
 		System.out.println("Add Product ID + " + product.getId());
 		
 		commande.setProducts(new ArrayList<Product>());
 		commande.getProducts().add(product);
+		
+		commande.setEmployee(employee);
+		commande.getEmployee().getFirstname();
 		
 		
 		return "success";
@@ -70,7 +74,14 @@ public class CommandeAction extends ActionSupport {
 			getProducts().put(product.getId(), product.getRef() +" - "+ product.getDescription());
 		}
 		
-//		System.out.println("Init Add Commande size : " + products.size());
+		
+		setEmployees(new HashMap<Integer, String>());
+		
+		List<Employee> allEmployee = employeeService.getAll();
+		for (Employee employee : allEmployee) {
+			getEmployees().put(employee.getId(),employee.getFirstname() + " - " + employee.getLastname());
+		}
+		
 		
 		
 		return "success";
@@ -119,6 +130,14 @@ public class CommandeAction extends ActionSupport {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Map<Integer, String> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Map<Integer, String> employees) {
+		this.employees = employees;
 	}
 
 	
