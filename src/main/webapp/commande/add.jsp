@@ -14,11 +14,13 @@
 	<s:actionerror />
 
 	<s:form action="addAction">
-		<s:textfield name="products.dateCommande" label="Date de la commande" />
-		<s:textfield name="products.dateLivraison" label="Date de livraison" />
+<%-- 		<s:textfield name="dateCommande" label="Date de la commande" /> --%>
+	
+		<s:textfield name="commande.dateLivraison"  label="Date de livraison" />
 
-		<s:select label="products" headerKey="-1" headerValue="Liste des produits" 
+		<s:select label="products" headerKey="-1" name="product.id" headerValue="Liste des produits" 
 			list="products" ></s:select>
+		
 		<s:submit />
 	</s:form>
 

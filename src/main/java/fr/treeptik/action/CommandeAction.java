@@ -1,5 +1,6 @@
 package fr.treeptik.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,8 @@ import org.springframework.stereotype.Component;
 import com.opensymphony.xwork2.ActionSupport;
 
 import fr.treeptik.entity.Commande;
-import fr.treeptik.entity.Employee;
 import fr.treeptik.entity.Product;
+import fr.treeptik.service.EmployeeService;
 import fr.treeptik.service.ProductService;
 
 @Component(value="commandeAction")
@@ -27,14 +28,18 @@ public class CommandeAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	
 	private Commande commande = new Commande();
+	private Product product = new Product();
 	private List<Commande> commandes;
 	private Map<Integer, String> products;
-	private Employee employee = new Employee();
+	
 	
 	
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private EmployeeService employeeService;
 
 	
 	@Action(value="addAction", results = {
@@ -44,7 +49,11 @@ public class CommandeAction extends ActionSupport {
 		
 		System.out.println("Add Commande");
 		
-		System.out.println(getCommande());
+		System.out.println("Add Product ID + " + product.getId());
+		
+		commande.setProducts(new ArrayList<Product>());
+		commande.getProducts().add(product);
+		
 		
 		return "success";
 	}
@@ -61,11 +70,12 @@ public class CommandeAction extends ActionSupport {
 			getProducts().put(product.getId(), product.getRef() +" - "+ product.getDescription());
 		}
 		
-		System.out.println("Init Add Commande size : " + products.size());
+//		System.out.println("Init Add Commande size : " + products.size());
 		
 		
 		return "success";
 	}
+	
 	
 	
 	@Action(value = "listAction", results = {
@@ -102,4 +112,14 @@ public class CommandeAction extends ActionSupport {
 	public void setProducts(Map<Integer, String> products) {
 		this.products = products;
 	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	
 }
